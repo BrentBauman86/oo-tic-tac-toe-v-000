@@ -133,4 +133,4 @@ def play
     puts "Congratulations #{winner(board)}!"
   end
 end
-end 
+
