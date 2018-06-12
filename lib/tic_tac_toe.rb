@@ -35,6 +35,7 @@ def move(location, token)
 
  def position_taken?(index)
   !(board[index].nil? || board[index] == " ")
+   !(board[index].nil? || board[index] == " ")
 end
 
 def valid_move?(index)
@@ -52,6 +53,20 @@ def valid_move?(index)
 else
 turn
 end
+   if valid_move?(index)
+    move(index, current_player)
+    display_board
+   else
+     turn
+  end
+ end
+
+def play(board)
+ turn = 0
+   until turn == 9
+   turn(board)
+       turn += 1
+   end
  end
 
  def turn_count
@@ -72,6 +87,8 @@ def won?
 WIN_COMBINATIONS.any? do |win_plz|
  if board[win_plz[0]] == board[win_plz[1]] && board[win_plz[1]] == board[win_plz[2]] && position_taken?(win_plz[1])
 return win_plz
+WIN_COMBINATIONS.find do |win_plz|
+ [win_plz[0]] == [win_plz[1]] && [win_plz[0]] == [win_plz[2]] && position_taken?(win_plz[1])
  end
 end
 end
@@ -86,6 +103,7 @@ board.none? do |filled|
 
 def draw?
 full? && !won?
+full? == true && !won?
 end
 
 def over?
@@ -95,18 +113,24 @@ end
 def winner
   if won?
   board[won?[0]]
+  if won? != nil
+  else win_time = won?
  end
 end
 
 def play
-until over?
-  turn
+
+
+  until over?
+    turn
   end
 
   if draw? == true
     puts "Cat's Game!"
- else won?
+ elsif won?
     puts "Congratulations #{winner}!"
+  else won?
+    puts "Congratulations #{winner(board)}!"
   end
 end
-end
+end 
