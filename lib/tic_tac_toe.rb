@@ -119,12 +119,6 @@ def winner
 end
 
 def play
-
-
-  until over?
-    turn
-  end
-
   if draw? == true
     puts "Cat's Game!"
  elsif won?
@@ -133,4 +127,3 @@ def play
     puts "Congratulations #{winner(board)}!"
   end
 end
-
